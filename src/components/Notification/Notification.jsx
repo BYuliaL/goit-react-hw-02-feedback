@@ -3,7 +3,7 @@ import styles from './notification.module.css';
 
 const Notification = ({ message }) => {
   return (
-    <div>
+    <div className={styles.messageContainer}>
       <p className={styles.message}>{message}</p>
     </div>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Section from './components/Section/Section';
-import FeedbackOptions from './components/FeedbackOptions/FeedbackOptions';
-import Statistics from './components/Statistics/Statistics';
-import StatisticTitle from './components/StatisticTitle/StatisticTitle';
-import Notification from './components/Notification/Notification';
+import Section from './components/Section';
+import FeedbackOptions from './components/FeedbackOptions';
+import Statistics from './components/Statistics';
+import StatisticTitle from './components/StatisticTitle';
+import Notification from './components/Notification';
 
 class App extends React.Component {
   static defaultProps = {
@@ -14,9 +14,9 @@ class App extends React.Component {
   };
 
   state = {
-    Good: this.props.goodValue,
-    Neutral: this.props.neutralValue,
-    Bad: this.props.badValue,
+    good: this.props.goodValue,
+    neutral: this.props.neutralValue,
+    bad: this.props.badValue,
   };
 
   onLeaveFeedback = event => {
@@ -27,16 +27,18 @@ class App extends React.Component {
   };
 
   countTotalFeedback = () => {
-    const total = this.state.Good + this.state.Neutral + this.state.Bad;
+    const { good, neutral, bad } = this.state;
+    const total = good + neutral + bad;
     return total;
   };
 
   countPositiveFeedbackPercentage = () => {
-    const percent = (this.state.Good / this.countTotalFeedback()) * 100;
+    const percent = (this.state.good / this.countTotalFeedback()) * 100;
     return Math.floor(percent);
   };
 
   render() {
+    const { good, neutral, bad } = this.state;
     const keys = Object.keys(this.state);
 
     return (
@@ -52,9 +54,9 @@ class App extends React.Component {
               <Notification message="No feedback given" />
             ) : (
               <Statistics
-                good={this.state.Good}
-                neutral={this.state.Neutral}
-                bad={this.state.Bad}
+                good={good}
+                neutral={neutral}
+                bad={bad}
                 total={this.countTotalFeedback()}
                 positivePercentage={this.countPositiveFeedbackPercentage()}
               />
