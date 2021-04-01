@@ -1,0 +1,18 @@
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  width: 80px;
+  height: 40px;
+  font-size: 20px;
+  line-height: 15px;
+  background-color: cornflowerblue;
+  outline-color: purple;
+  border: none;
+}
+
+button:not(:last-child) {
+  margin-right: 15px;
+}
